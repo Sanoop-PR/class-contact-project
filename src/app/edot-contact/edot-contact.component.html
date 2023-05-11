@@ -1,0 +1,123 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <h1><i class="fa-solid fa-user-pen"></i>edit Contact Page</h1>
+            <p class="text-justify">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt aperiam nihil recusandae ad esse consectetur tempore reiciendis illum distinctio officia repellendus dolores ex eligendi deserunt, fuga totam, labore itaque odit?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium nesciunt sapiente assumenda. Magni eos similique porro asperiores tempore nesciunt esse odit ad, blanditiis, delectus sed nisi eum quibusdam molestiae ullam?
+            </p>
+            
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <form #editContactForm="ngForm">
+                <!-- id -->
+                <div class="mb-3 row">
+                    <input name="id" #id="ngModel" [(ngModel)]="contact.id" class="form-control" type="text" placeholder="contact id" aria-label="default input example" required>
+                </div>
+                <!-- id validation -->
+                <div class="mb-3 row text-danger" *ngIf="id.invalid && id.touched">
+                    please enter a valid id
+                </div>
+
+                <!-- name -->
+                <div class="mb-3 row">
+                    <input name="name" #name="ngModel" [(ngModel)]="contact.name" class="form-control" type="text" placeholder="contact name" aria-label="default input example" required pattern="[a-zA-Z ]*">
+                </div>
+                <!-- name - validation -->
+                <div class="mb-3 row text-danger" *ngIf="name.invalid && name.touched">
+                    please enter a valid name
+                </div>
+
+                <!-- photo  -->
+                <div class="mb-3 row">
+                    <input name="photo" #photo="ngModel" [(ngModel)]="contact.photo" class="form-control" type="url" placeholder="contact image url" aria-label="default input example" required>
+
+                </div>
+                <!-- photo validation -->
+                <div class="mb-3 row text-danger" *ngIf="photo.invalid && photo.touched">
+                    please enter a valid photo
+                </div>
+
+                <!-- mobile -->
+                <div class="mb-3 row">
+                    <input name="mobile" #mobile="ngModel" [(ngModel)]="contact.mobile" class="form-control" type="email" placeholder="contact mobile number" aria-label="default input example" required pattern="[0-9]*" minlength="10" maxlength="10">
+                </div>
+                <!-- mobile validation -->
+                <div class="mb-3 row text-danger" *ngIf="mobile.invalid && mobile.touched">
+                    please enter a valid mobile
+                </div>
+
+                <!-- email -->
+                <div class="mb-3 row">
+                    <input name="email" #email="ngModel" [(ngModel)]="contact.email" class="form-control" type="email" placeholder="contact email id" aria-label="default input example" email required >
+                </div>
+                <!-- email validation -->
+                <div class="mb-3 row text-danger" *ngIf="email.invalid && email.touched">
+                    please enter a valid email
+                </div>
+
+                <!-- company -->
+                <div class="mb-3 row">
+                    <input name="company" #company="ngModel" [(ngModel)]="contact.company" class="form-control" type="text" placeholder="contact company name" aria-label="default input example" required>
+                </div>
+                <!-- company validation -->
+                <div class="mb-3 row text-danger" *ngIf="company.invalid && company.touched">
+                    please enter a valid company
+                </div>
+
+
+                <div class="mb-3 row">
+                    <input name="title" #title="ngModel" [(ngModel)]="contact.title" class="form-control" type="email" placeholder="contact title" aria-label="default input example" required>
+                </div>
+                <!-- title validation -->
+                <div class="mb-3 row text-danger" *ngIf="title.invalid && title.touched">
+                    please enter a valid title
+                </div>
+
+
+                <div class="row mb-3">
+                    <select name="groupId" #groupId="ngModel" [(ngModel)]="contact.groupId" class="form-select" id="inputGroupSelect03" aria-label="Example select with button addon" pattern="[0-9]*" required>
+                      <option selected disabled hidden >choose a group</option>
+                      <option [value]="group.id" *ngFor="let group of groups">{{group.name}}</option>
+                    </select>
+                </div>
+                <!-- groupId validation -->
+                <div class="mb-3 row text-danger" *ngIf="groupId.invalid && groupId.touched">
+                    please enter a valid group
+                </div>
+                
+                <div class="d-flex justify-content-end align-items-end">
+                    <a routerLink="">
+                        <button type="button" class="btn btn-warning">close</button>
+                    </a> &nbsp;
+                    <!-- <a href=""> -->
+                        <button (click)="editContact(contact.id)" [disabled]="editContactForm.invalid" type="button" class="btn btn-danger">update</button>
+                    <!-- </a> -->
+                </div>
+            </form>
+            
+        </div>
+        <div class="col-4">
+            <div [hidden]="editContactForm.invalid" class="card bg-dark text-light" style="width: 18rem;">
+                <img style="margin: auto; margin-top: 5px;" width="150px" height="150px" src="{{contact.photo}}" class="" alt="...">
+                <div class="card-body ">
+                    <div class="card-header">
+                        {{contact.name}}
+                    </div>
+                    <ul class="list-group list-group-flush ">
+                        <li class="list-group-item bg-dark text-light">Id: {{contact.id}}</li>
+                        <li class="list-group-item bg-dark text-light">Mobile: {{contact.mobile}}</li>
+                        <li class="list-group-item bg-dark text-light">Email: {{contact.email}}</li>
+                        <li class="list-group-item bg-dark text-light">company: {{contact.company}}</li>
+                        <li class="list-group-item bg-dark text-light">Title: {{contact.title}}</li>
+                        <li class="list-group-item bg-dark text-light">Group: <span *ngIf="groupId.model!='choose...'">{{contact.groupId}}</span></li>
+                    </ul>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>

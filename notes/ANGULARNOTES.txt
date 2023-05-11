@@ -1,0 +1,60 @@
+------------basic commands -------------
+
+1.  to create an angular project : ng new project-name
+2.  to run an angular project    : ng serve
+3.  to generate components       : ng g c component-name
+4.  to generate service          : ng g s service-folder/service-name
+5.  to generate build            : ng build  // to deploy in netlify
+
+-----------------basic concept in angular-----------
+
+1.  modules    - to import 3rd party libraries , also used to hold  components , root module : AppModules
+2.  components - html, css, ts, also have a selector , root components: AppComponents
+3.  selector   - to replace selector tag with its html page
+4.  decorator  - to hold meta data, starts with @
+5.  set up path for component - to view a component in another webpage
+    - use App.RoutingModule.ts file
+    - use router-outlet selector in root component(AppComponents) - to navigate according to the user requested path
+    - routerLInk : used to redirecting without refreshing parent page
+6.  data binding - data sharing within a component
+    6.1    one way binding : data sharing in one direction
+        6.1.1   ts(component) to html file (view)
+            <-- in html
+            {{property-name}}
+            -->
+            6.1.1.1   string interpolation : {{class property-name}}
+                        <!--in ts 
+                          property-name:property-type="......" 
+                          ex:content:string = "user"
+                          -->
+            6.1.1.2   property binding : [attribute-name]="property-name"
+                        <-- ex:
+                        imageUrl:string= "https://www.nicepng.com/png/full/128-1280406_user-icon-png.png"
+                        -->
+        6.1.2.   html(view) to ts (component)
+            <-- in html
+            (event-name)
+            -->
+            6.1.2.1.     event binding : (event-name)="function call"
+                        <--(click)-->
+            6.1.2.2.     event binding using $event: (event-name)="function name($event)"
+                        <--(change)-->
+            6.1.2.3.     event binding using template reference variable:#variable-name
+    6.2.     two way binding : data sharing in both direction
+        6.2.1. ngModel: import form module in AppModule
+        [(ngModel)]="class property"
+7.  angular form (use for two way binding)
+    7.1 template Driven forms
+    7.2 model Driven forms
+8. Dependency injection : to share data between dependent class
+        <--access-specifier:private or public-->
+        <--to share data between user defined and pre defined class -->
+    - constructor(access-specifier variable-name:class name){}
+9.  angular services - two user defined component share data
+10. angular directives : DOM manipulation
+    10.1.   component directive
+    10.2.   structural directive: to add/remove html element
+                - *ngFor = "let variable-name of array-name" <--its like FOR OF loop of js-->
+    10.3.   attribute directive : to apply style to html elements
+                - ngClass 
+11. 

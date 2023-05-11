@@ -1,0 +1,82 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <h1>All Contact Page
+                <a routerLink="add-contact" class="btn btn-success ms-5">
+                    <i class="fa-solid fa-user-plus">Add new</i>
+                </a>
+            </h1>
+            <p class="text-justify">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt aperiam nihil recusandae ad esse consectetur tempore reiciendis illum distinctio officia repellendus dolores ex eligendi deserunt, fuga totam, labore itaque odit?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium nesciunt sapiente assumenda. Magni eos similique porro asperiores tempore nesciunt esse odit ad, blanditiis, delectus sed nisi eum quibusdam molestiae ullam?
+            </p>
+            
+            <div class="row mt-5">
+                <div class="col-lg-2 fw-bolder">
+                    Search :
+                </div>
+                <div class="col-lg-6">
+                    <input [(ngModel)]="searchKey" type="text" class="form-control me-auto" placeholder="type contact name here!!!">
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<!-- loading - spinner  -->
+<div *ngIf="isLoading && allContact.length==0" class="text-center mt-5">
+    <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+
+
+<!-- error message -->
+<div  *ngIf="errorMSg" class="alert alert-danger m-5" role="alert">
+    {{errorMSg}}
+</div>
+<!-- no result found -->
+<div class="text-center mt-5 text-danger fs-5" *ngIf="(allContact | filter : searchKey : 'name').length === 0 && !isLoading">
+    No results found.
+</div>
+
+<div class="container-fluid mt-5">
+    <div class="row" *ngIf="!isLoading && allContact.length>0">
+        <div class="col-lg-6 mb-3" *ngFor="let contact of allContact | filter : searchKey : 'name' ">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-md-3 text-center">
+                            <img [src]="contact.photo" alt="" width="120px" height="150px">
+                        </div>
+                        <div class="col-md-8">
+                            <ul class="list-group">
+                                <li class="list-group-item">Name : 
+                                    <span class="fw-bold">{{contact.name}}</span>
+                                </li>
+                                <li class="list-group-item">Mobile : 
+                                    <span class="fw-bold">{{contact.mobile}}</span>
+                                </li>
+                                <li class="list-group-item">Email : 
+                                    <span class="fw-bold">{{contact.email}}</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-1 d-flex flex-column justify-content-center align-items-center">
+                            <!-- action -->
+                            <a routerLink="view-contact/{{contact.id}}" class="btn btn-primary text-light mb-1">
+                                <i class="fa-solid fa-eye"></i>
+                            </a>
+                            <a routerLink="edit-contact/{{contact.id}}" class="btn btn-warning text-light mb-1">
+                                <i class="fa-solid fa-pen"></i>
+                            </a>
+                            <button (click)="deleteContact(contact.id)" type="button" class="btn btn-danger text-light mb-1">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>

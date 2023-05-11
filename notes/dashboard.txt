@@ -1,0 +1,31 @@
+1.  create project : ng new project-name
+2.  run project : ng s
+3.  install / add 3rd party libraries to complete project
+        -install angular material : ng add @angular/material
+            - choose a pre build theme
+            - enable typography
+            - enable animation
+            -to use any component form material
+                - copy the api for particular and paste it in appModule.ts
+                - import in appModule.ts and 
+                - import in style.css
+4.  Delete all content in AppComponent.html
+5.  check 3rd party libraries working in project or not
+6.  generate component
+    - header
+    - footer
+    - sidebar
+    - dashboard
+        - card
+        - chart
+        - table
+        - pi-chart
+7.  design component
+8.  set up path for component and update
+    - dashboard
+    - employees
+    - gallery
+    - contacts
+    - icons
+9.  to add chart : npm install highcharts-angular --save
+    - by using command : 
